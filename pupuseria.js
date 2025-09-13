@@ -58,12 +58,18 @@ botonesAnadir.forEach(boton => {
     boton.addEventListener('click', () => {
         const nombre = boton.dataset.nombre;
         const precio = parseFloat(boton.dataset.precio);
+        const targetId = boton.dataset.target;
+        const cantidadInput = document.getElementById(targetId);
+        const cantidad = parseInt(cantidadInput.value, 10);
         
-        const itemExistente = carrito.find(item => item.nombre === nombre);
-        if (itemExistente) {
-            itemExistente.cantidad++;
-        } else {
-            carrito.push({ nombre, precio, cantidad: 1 });
+        if (cantidad > 0) {
+            const existingItem = carrito.find(item => item.nombre === nombre);
+            if (existingItem) {
+                existingItem.cantidad += cantidad;
+            } else {
+                carrito.push({ nombre, precio, cantidad });
+            }
+            actualizarCarrito();
         }
         
         actualizarCarrito();
