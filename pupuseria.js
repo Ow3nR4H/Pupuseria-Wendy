@@ -1,4 +1,4 @@
-const restauranteNumero = '50379111545';
+const restauranteNumero = '50375415287';
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 const listaPedido = document.getElementById('lista-pedido');
@@ -111,3 +111,4 @@ botonConfirmar.addEventListener('click', () => {
 
 
 actualizarCarrito();
+
