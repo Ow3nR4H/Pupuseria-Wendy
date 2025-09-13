@@ -3,258 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedidos</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Pedidos | Pupuseria Wendy</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="pupuseria" href="pupuseria.json">
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('Service Worker registrado con éxito:', registration);
-                    })
-                    .catch(error => {
-                        console.log('Fallo el registro del Service Worker:', error);
-                    });
-            });
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
 
-    <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 max-w-lg w-full mb-8">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-red-500 mb-6 text-center">PUPUSERIA WENDY</h1>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-           
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de queso">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Queso</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Queso" data-precio="0.75">
+    <!-- Sección de Pupusas -->
+    <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-12 max-w-4xl w-full mb-8">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-600 mb-8 text-center">PUPUSERIA WENDY</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            
+            <!-- Pupusa de Queso -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa de queso">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Queso</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-queso">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Queso" data-precio="0.75" data-target="qty-queso">
                         Añadir
                     </button>
                 </div>
             </div>
 
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de ajo">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Ajo con Queso</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Ajo con Queso" data-precio="0.75">
+            <!-- Pupusa de Ajo con Queso -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg"alt="Pupusa de ajo">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Ajo con Queso</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-ajo-queso">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Ajo con Queso" data-precio="0.75" data-target="qty-ajo-queso">
                         Añadir
                     </button>
                 </div>
             </div>
 
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de jalapeño">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Queso con Loroco</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Queso con Loroco" data-precio="0.75">
+            <!-- Pupusa de Queso con Loroco -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa de loroco">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Queso con Loroco</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-queso-loroco">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Queso con Loroco" data-precio="0.75" data-target="qty-queso-loroco">
                         Añadir
                     </button>
                 </div>
             </div>
 
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de chicharrón con queso">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Chicharrón con Queso</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Chicharrón con Queso" data-precio="0.75">
+            <!-- Pupusa de Chicharrón con Queso -->
+            <div class="pupusa-card">
+               <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa de chicharrón con queso">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Chicharrón con Queso</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-chicharron-queso">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Chicharrón con Queso" data-precio="0.75" data-target="qty-chicharron-queso">
                         Añadir
                     </button>
                 </div>
             </div>
             
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de chicharrón con frijol">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Chicharrón con Frijol</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Chicharrón con Frijol" data-precio="0.75">
+            <!-- Pupusa de Chicharrón con Frijol -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa de chicharrón con frijol">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Chicharrón con Frijol</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-chicharron-frijol">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Chicharrón con Frijol" data-precio="0.75" data-target="qty-chicharron-frijol">
                         Añadir
                     </button>
                 </div>
             </div>
 
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de frijol">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Frijol</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Frijol" data-precio="0.75">
+            <!-- Pupusa de Frijol -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa de frijol">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Frijol</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-frijol">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Frijol" data-precio="0.75" data-target="qty-frijol">
                         Añadir
                     </button>
                 </div>
             </div>
             
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de frijol con queso">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Frijol con Queso</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Frijol con Queso" data-precio="0.75">
+            <!-- Pupusa de Frijol con Queso -->
+            <div class="pupusa-card">
+           <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa de frijol con queso">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Frijol con Queso</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-frijol-queso">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Frijol con Queso" data-precio="0.75" data-target="qty-frijol-queso">
                         Añadir
                     </button>
                 </div>
             </div>
 
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa revuelta">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa Revuelta</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa Revuelta" data-precio="0.75">
+            <!-- Pupusa Revuelta -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa revuelta">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa Revuelta</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-revuelta">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa Revuelta" data-precio="0.75" data-target="qty-revuelta">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+            
+            <!-- Pupusa de Queso con Jamón -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa de queso con jamón">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Queso con Jamón</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-queso-jamon">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Queso con Jamon" data-precio="0.75" data-target="qty-queso-jamon">
                         Añadir
                     </button>
                 </div>
             </div>
 
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de queso">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Queso</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Queso" data-precio="0.75">
+            <!-- Pupusa de Queso con Jalapeño -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg"alt="Pupusa de queso con jalapeño">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Queso con Jalapeño</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-queso-jalapeno">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Queso con Jalapeño" data-precio="0.75" data-target="qty-queso-jalapeno">
                         Añadir
                     </button>
                 </div>
             </div>
 
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de queso con loroco">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Queso con Loroco</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Queso con Loroco" data-precio="0.75">
+            <!-- Pupusa de Queso con Ayote -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa de queso con ayote">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa de Queso con Ayote</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-queso-ayote">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa de Queso con Ayote" data-precio="0.75" data-target="qty-queso-ayote">
                         Añadir
                     </button>
                 </div>
             </div>
 
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de queso con loroco">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Queso con Jamon</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Queso con Jamon" data-precio="0.75">
+            
+            <!-- Pupusa Loca -->
+            <div class="pupusa-card">
+                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" alt="Pupusa loca">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pupusa Loca</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.50</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-loca">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pupusa Loca" data-precio="2.50" data-target="qty-loca">
                         Añadir
                     </button>
-                </div>
+                </div> 
             </div>
 
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de queso con loroco">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Queso con Jalapeño</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Queso con Jalapeño" data-precio="0.75">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de queso con loroco">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa de Queso con Ayote</h3>
-                        <span class="text-xl font-bold text-green-600">$0.75</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Queso con Ayote" data-precio="0.75">
-                        Añadir
-                    </button>
-                </div>
-            </div>
-
-            <div class="pupusa-card flex flex-col items-center p-4 bg-gray-50 rounded-lg shadow-sm text-center">
-                <img src="https://www.lapupusafactory.com/wp-content/uploads/2021/07/192557873_4674528179229937_2032869777189240543_n-e1634069154188.jpg" width="100" height="100" class="rounded-full mb-2" alt="Pupusa de queso con loroco">
-                <div class="pupusa-card-content flex flex-col justify-between items-center w-full">
-                    <div>
-                        <h3 class="text-lg font-semibold text-gray-700">Pupusa Loca</h3>
-                        <span class="text-xl font-bold text-green-600">$2.50</span>
-                    </div>
-                    <button class="add-to-cart mt-2 px-4 py-2 bg-blue-500 text-white rounded-full font-medium shadow-md hover:bg-blue-600 transition-colors w-full"
-                        data-nombre="Pupusa de Queso con Loroco" data-precio="2.50">
-                        Añadir
-                    </button>
-                </div>              
-            </div>
-                  <div class="mt-8 text-center">
-                 <a href="bebidas.html" class="inline-block px-8 py-4 text-lg font-bold text-white bg-green-600 rounded-full shadow-lg hover:bg-green-700 transition-colors">
-                 Ver Bebidas
-                 </a>
-            </div>
+        </div>
+        <div class="mt-8 text-center">
+            <a href="bebidas.html" onclick="showModal({nombre: 'Bebidas', mensaje: 'Puedes ver nuestro menú de bebidas, pero no puedes interactuar con él'})" class="inline-block px-8 py-4 text-lg font-bold text-white bg-green-600 rounded-full shadow-lg hover:bg-green-700 transition-colors">
+                Ver Bebidas
+            </a>
         </div>
     </div>
 
-     <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 max-w-lg w-full">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Tu Pedido</h2>
+    <!-- Sección del Pedido -->
+    <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-12 max-w-4xl w-full">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Tu Pedido</h2>
 
         <div class="mb-4">
             <label for="direccion-cliente" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
-            <input type="text" id="direccion-cliente" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Escribe tu dirección aquí" required>
+            <input type="text" id="direccion-cliente" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Escribe tu dirección aquí" required>
         </div>
 
-        <ul id="lista-pedido" class="list-none p-0 space-y-2 mb-4">
+        <ul id="lista-pedido" class="list-none p-0 space-y-4 mb-4">
+            <!-- Los items del pedido se añadirán aquí -->
         </ul>
-        <div class="flex justify-between items-center text-lg font-semibold text-gray-700 border-t pt-4">
+        <div class="flex justify-between items-center text-xl font-semibold text-gray-700 border-t pt-4">
             <span>Total:</span>
-            <span id="total" class="font-bold text-green-600 text-2xl">$0.00</span>
+            <span id="total" class="font-bold text-green-600 text-3xl">$0.00</span>
         </div>
 
-        <button id="confirmar-pedido" class="w-full mt-6 bg-green-500 text-white font-bold py-3 rounded-full shadow-lg hover:bg-green-600 transition-colors">
-            Enviar
+        <button id="confirmar-pedido" class="w-full mt-8 bg-green-600 text-white font-bold py-4 rounded-full shadow-lg hover:bg-green-700 transition-colors">
+            Enviar Pedido
         </button>
     </div>
 
-    <footer class="bg-gray-900 text-gray-300 py-10 rounded-t-3xl shadow-lg">
+    <!-- Modal para el mensaje de confirmación -->
+    <div id="modal-container" class="modal hidden">
+        <div class="modal-content text-center">
+            <h3 class="text-2xl font-bold text-gray-800 mb-4">¡Pedido Enviado!</h3>
+            <p id="modal-message" class="text-gray-600 mb-6 modal-message"></p>
+            <button id="close-modal" class="px-6 py-2 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transition-colors">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="bg-gray-900 text-gray-300 py-10 rounded-t-3xl shadow-inner w-full mt-8">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
-                    <h3 class="text-xl font-bold text-white mb-4">Visitanos</h3>
+                    <h3 class="text-xl font-bold text-white mb-4">Visítanos</h3>
                     <p class="text-sm">Barrio San Juan de Dios, 2 calle poniente casa 48-B, entre 7° y, 9 Avenida Sur, San Vicente</p>
                 </div>
                 <div>
@@ -268,13 +265,12 @@
                                 class="w-full h-48 rounded-lg shadow-md"
                                 style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
-                    <div class="flex justify-center md:justify-start space-x-4">
-                    </div>
                 </div>
             </div>
+        </div>
     </footer>
     
     <script src="pupuseria.js"></script>
+       
 </body>
-
 </html>
