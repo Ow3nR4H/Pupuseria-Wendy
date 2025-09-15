@@ -174,7 +174,7 @@ const restauranteNumero = '50375415287';
             });
 
             // Construir el mensaje completo
-            let mensaje = `¡Hola! Me gustaría hacer un pedido para la dirección: "\n${direccionCliente}\n\n"`;
+            let mensaje = `¡Hola! Me gustaría hacer un pedido para la dirección: "\n\n${direccionCliente}\n\n"`;
             mensaje += mensajeItems.join('\n');
             // Si se seleccionó una especificación
            const espec = acompanamientoSeleccionado || especificacionAdicional;
@@ -201,3 +201,4 @@ const restauranteNumero = '50375415287';
 
 
         actualizarCarrito();
+
