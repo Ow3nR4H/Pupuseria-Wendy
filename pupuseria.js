@@ -1,4 +1,4 @@
-const restauranteNumero = '50375415287';
+const restauranteNumero = '50379111545';
         let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
         const listaPedido = document.getElementById('lista-pedido');
@@ -201,4 +201,5 @@ const restauranteNumero = '50375415287';
 
 
         actualizarCarrito();
+
 
