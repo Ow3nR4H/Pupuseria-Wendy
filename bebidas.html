@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos | Bebidas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="pupuseria.js">
+    <meta name="theme-color" content="#16a34a">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease-in-out;
+        }
+        .pupusa-card {
+            background-color: #fff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: 2px solid transparent;
+        }
+        .pupusa-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #1A56DB;
+        }
+        .pupusa-card img {
+            border-radius: 1rem;
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            object-position: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            max-width: 90%;
+            width: 500px;
+            transform: scale(0.95);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal.visible .modal-content {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-12 max-w-4xl w-full mb-8">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-600 mb-8 text-center">MENÚ DE BEBIDAS</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            
+            <div class="pupusa-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG" alt="Café">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Café</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.35</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-cafe">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Cafe" data-precio="0.35" data-target="qty-cafe">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://kaprichosur.com/wp-content/uploads/2021/02/chocolate.jpg"alt="Chocolate">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Chocolate</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-chocolate">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Chocolate" data-precio="0.75" data-target="qty-chocolate">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://thumbs.dreamstime.com/b/jugo-fresco-bebida-sana-57745545.jpg" alt="Fresco">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Fresco</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.35</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-fresco">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Fresco" data-precio="0.35" data-target="qty-fresco">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+
+            <div class="pupusa-card">
+               <img src="https://5aldia.cl/wp-content/uploads/2018/04/jugo-de-naranja-destacado.jpg" alt="Jugo de Naranja">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Jugo de Naranja</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-jugo-naranja">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Jugo de Naranja" data-precio="2.00" data-target="qty-jugo-naranja">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            
+            <div class="pupusa-card">
+                <img src="https://peopleenespanol.com/thmb/Y_QdDz3qtmU5jWNcEHOk11Mjvs0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/668afd59-1e07-4529-a237-3370400143e6-2000-f05df85d109947828d085ee5141e0824.jpg" alt="Jugo de Naranja con Fresa">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Jugo de Naranja con Fresa</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-jugo-naranja-fresa">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Jugo de Naranja con Fresa" data-precio="2.00" data-target="qty-jugo-naranja-fresa">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcO6DWa0iC3Vsw_yNzppGgXG6x3K0gPApyYw&s" alt="Jugo de Naranja con Zanahoria">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Jugo de Naranja con Zanahoria</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-jugo-naranja-zanahoria">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Jugo de Naranja con Zanahoria" data-precio="2.00" data-target="qty-jugo-naranja-zanahoria">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            
+            <div class="pupusa-card">
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe0vS-UnqUBwiEuo8mtDVr1CwXEa1oBUzfBmRVnV6xhxldv7wI_vDvwMNnUmLrWwC5XAk&s.png" alt="Jugo de Naranja con Huevo">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Jugo de Naranja con Huevo</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.25</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-jugo-naranja-huevo">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Jugo de Naranja con Huevo" data-precio="2.25" data-target="qty-jugo-naranja-huevo">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://www.goodnes.com/sites/g/files/jgfbjl321/files/srh_recipes/331414dc103d4255a843154a06f3ea93.jpg" alt="Licuado de Leche">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Licuado de Leche</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-licuado-leche">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Licuado de Leche" data-precio="2.00" data-target="qty-licuado-leche">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+            
+            <div class="pupusa-card">
+                <img src="https://www.lechedeflorida.com/file/266/Untitled-design-1.jpg" alt="Licuado de Leche con Cafe">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Licuado de Leche con Cafe</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-licuado-leche-cafe">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Licuado de Leche con Cafe" data-precio="2.00" data-target="qty-licuado-leche-cafe">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://imag.bonviveur.com/batido-de-platano-foto-principal.jpg"alt="Licuado de Leche con Guineo">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Licuado de Leche con Guineo</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-licuado-leche-guineo">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Licuado de Leche con Guineo" data-precio="2.00" data-target="qty-licuado-leche-guineo">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://enrilemoine.com/wp-content/uploads/2014/09/Batido-de-fresas-y-avena-SAVOIR-FAIRE-by-enrilemoine-scaled.webp" alt="Licuado de Leche con Fresa">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Licuado de Leche con Fresa</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-licuado-leche-fresa">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Licuado de Leche con Fresa" data-precio="2.00" data-target="qty-licuado-leche-fresa">
+                        Añadir
+                    </button>
+                </div>
+            </div>
+            
+            <div class="pupusa-card">
+                <img src="https://i.ytimg.com/vi/ga7uLiJF0sc/maxresdefault.jpg" alt="Licuado de Leche con Galleta">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Licuado de Leche con Galleta</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$2.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-licuado-leche-galleta">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Licuado de Leche con Galleta" data-precio="2.00" data-target="qty-licuado-leche-galleta">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://www.chickeysinasal.com/cdn/shop/files/Soda_700x700.webp?v=1742979860" alt="Soda">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Soda</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$1.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-soda">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Soda" data-precio="1.00" data-target="qty-soda">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://walmartsv.vtexassets.com/arquivos/ids/486814-800-450?v=638572752142700000&width=800&height=450&aspect=true" alt="Jugo del Valle">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Jugo del Valle</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$1.00</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-jugo-valle">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Jugo del Valle" data-precio="1.00" data-target="qty-jugo-valle">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://walmartsv.vtexassets.com/arquivos/ids/382915/6-Pack-Nectar-Naturas-Lata-335Ml-2-11623.jpg?v=638416535668670000" alt="Jugo de Lata">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Jugo de Lata</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$0.75</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-jugo-lata">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Jugo de Lata" data-precio="0.75" data-target="qty-jugo-lata">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://d31f1ehqijlcua.cloudfront.net/n/6/c/c/9/6cc997c0665471a76b764e982ca8eb0ef87de72c_SsportsDrinks_443758_01.jpg" alt="Gatorade">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Gatorade</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$1.50</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-gatorade">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Gatorade" data-precio="1.50" data-target="qty-gatorade">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://mercadeandosv.com/wp-content/uploads/2024/08/TE-FRIO-LIPTON-SABOR-A-LIMON-500-ML.jpg.webp" alt="Te Lipton">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Te Lipton</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$1.50</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-te">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Te Lipton" data-precio="1.50" data-target="qty-te">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://img77.uenicdn.com/image/upload/v1661377203/business/e1bc5fb3-2f02-4be9-9a5f-c7d5a7fd7d8e.png" alt="Pilsener">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Pilsener</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$1.50</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-pilsener">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Pilsener" data-precio="1.50" data-target="qty-pilsener">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://elcharrodejalisco.facturacionsv.com/app/ajax/BesafeProduct/products/9Af90wSmc4/4ec10ea3a0d2081a1913ec27b9dc31e386f40fa3.png" alt="Golden">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Golden</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$1.50</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-golden">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Golden" data-precio="1.50" data-target="qty-golden">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+
+            <div class="pupusa-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUHFRwfxcN4WtHfBMDBKduO49j89G85DUnAg&s.png" alt="Golden Extra">
+                <div class="mt-4">
+                    <h3 class="text-xl font-bold text-gray-800">Golden Extra</h3>
+                    <span class="text-2xl font-bold text-green-600 mt-1 block">$1.50</span>
+                </div>
+                <div class="mt-4 w-full flex items-center justify-center space-x-2">
+                    <input type="number" min="1" value="1" class="w-16 text-center px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" id="qty-golden-extra">
+                    <button class="add-to-cart px-4 py-2 bg-blue-600 text-white rounded-full font-semibold shadow-md hover:bg-blue-700 transition-colors w-full"
+                            data-nombre="Golden Extra" data-precio="1.50" data-target="qty-golden-extra">
+                        Añadir
+                    </button>
+                </div> 
+            </div>
+
+        </div>
+         <div class="mt-8 text-center">
+            <!-- 🔥 ya sin onclick -->
+            <a href="index.html" 
+               class="inline-block px-8 py-4 text-lg font-bold text-white bg-green-600 rounded-full shadow-lg hover:bg-green-700 transition-colors">
+                Ver Pupusas
+            </a>
+        </div>
+    </div>
+
+    <!-- Sección del Pedido -->
+    <div class="bg-white rounded-3xl shadow-2xl p-6 md:p-12 max-w-4xl w-full">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Tu Pedido</h2>
+
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-6 justify-center">
+             <button id="dommicilio-btn" class="w-full sm:w-1/2 bg-green-600 text-white font-bold py-4 rounded-full shadow-lg hover:bg-green-700 transition-colors">Pedir A Domicilio</button>
+             <button id="recoger-btn" class="w-full sm:w-1/2 bg-green-600 text-white font-bold py-4 rounded-full shadow-lg hover:bg-green-700 transition-colors">Pasar a Recoger</button>
+         </div>
+        
+        <div class="mb-4">
+            <label for="direccion-cliente" class="block text-gray-700 font-semibold mb-2">Dirección:</label>
+            <input type="text" id="direccion-cliente" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Escribe tu dirección aquí" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="telefono-cliente" class="block text-gray-700 font-semibold mb-2">Número de contacto:</label>
+            <input type="tel" id="telefono-cliente" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ejemplo: 7012-3456" required>
+        </div>
+        
+        <div class="mb-4">
+            <label for="nombre-cliente" class="block text-gray-700 font-semibold mb-2">Nombre del Cliente:</label>
+            <input type="tel" id="nombre-cliente" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="..." required>
+        </div>
+
+        <ul id="lista-pedido" class="list-none p-0 space-y-4 mb-4"></ul>
+        <div class="flex justify-between items-center text-xl font-semibold text-gray-700 border-t pt-4">
+            <span>Total:</span>
+            <span id="total" class="font-bold text-green-600 text-3xl">$0.00</span>
+        </div>
+
+        <button id="confirmar-pedido" class="w-full mt-8 bg-green-600 text-white font-bold py-4 rounded-full shadow-lg hover:bg-green-700 transition-colors">
+            Enviar Pedido
+        </button>
+    </div>
+    
+    <!-- Footer -->
+   <footer class="bg-gray-900 text-gray-300 py-10 rounded-t-3xl shadow-inner w-full mt-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Visítanos</h3>
+                    <p class="text-sm">Barrio San Juan de Dios, 2 calle poniente casa 48-B, entre 7° y, 9 Avenida Sur, San Vicente</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Horario de Atención</h3>
+                    <p class="text-sm">Lunes - Domingo: 3:00 PM - 10:00 PM</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-4">Maps</h3>
+                    <div class="mt-4 aspect-w-16 aspect-h-9 w-full">
+                        <iframe src="https://www.google.com/maps/embed?pb=!3m2!1ses-419!2ssv!4v1757718195616!5m2!1ses-419!2ssv!6m8!1m7!1sCAoSF0NJSE0wb2dLRUlDQWdJQ0h1OHJJOUFF!2m2!1d13.64395533187602!2d-88.78847245825571!3f273.0036925296027!4f-34.06439958805974!5f0.40033677697232595"
+                                class="w-full h-48 rounded-lg shadow-md"
+                                style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="message-container"></div>
+    <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js")
+      .then(() => console.log("Service Worker registrado"))
+      .catch(err => console.log("Error en SW:", err));
+  }
+</script>
+    
+    <!-- 🔥 corregido -->
+    <script src="pupuseria.js"></script>
+</body>
+</html>
