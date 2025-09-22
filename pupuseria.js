@@ -224,6 +224,7 @@ if (telefonoCliente === '') {
         if (tipoEntrega === 'domicilio' && inputDireccion) {
             mensaje += `Tipo de entrega: A domicilio\n`;
             mensaje += `Dirección: ${inputDireccion.value.trim()}\n\n`;
+            mensaje += `Número de contacto: ${telefonoCliente}\n\n`;
         } else {
             mensaje += `Tipo de entrega: Pasar a recoger\n\n`;
             mensaje += `Número de contacto: ${telefonoCliente}\n\n`;
@@ -247,3 +248,4 @@ if (telefonoCliente === '') {
 }
 
 actualizarCarrito();
+
