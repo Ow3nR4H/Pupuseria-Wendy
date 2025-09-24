@@ -9,6 +9,7 @@ self.addEventListener("install", (e) => {
         "/pupuseria.js",
         "/favicon.png",
         "/offline.html",
+        "/pupuseria.json",
       ]);
     })
   );
@@ -20,4 +21,5 @@ self.addEventListener("fetch", (e) => {
       return response || fetch(e.request);
     })
   );
+
 });
