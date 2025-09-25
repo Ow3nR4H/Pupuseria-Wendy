@@ -20,7 +20,7 @@ function resetPupusaSelection(card) {
     masaRadios.forEach(radio => radio.checked = false);
 }
 
-const restauranteNumero = '50375415287';
+const restauranteNumero = '50379111545';
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 const modalContainer = document.getElementById('modal-container');
@@ -267,5 +267,6 @@ if (nombreCliente === '') {
 }
 
 actualizarCarrito();
+
 
 
